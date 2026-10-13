@@ -1,0 +1,49 @@
+[gd_scene load_steps=3 format=3 uid="uid://c3q4vy678o2p1"]
+
+[ext_resource type="Script" path="res://scripts/exit_portal.gd" id="1_ep"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_portal"]
+radius = 32.0
+
+[node name="ExitPortal" type="Area2D"]
+collision_layer = 16
+collision_mask = 2
+script = ExtResource("1_ep")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_portal")
+
+[node name="OuterGlow" type="Polygon2D" parent="."]
+color = Color(0.2, 0.9, 0.4, 0.2)
+polygon = PackedVector2Array(-48, -48, 48, -48, 48, 48, -48, 48)
+
+[node name="Ring1" type="Node2D" parent="."]
+
+[node name="Line" type="Line2D" parent="Ring1"]
+points = PackedVector2Array(0, -32, 28, -16, 28, 16, 0, 32, -28, 16, -28, -16, 0, -32)
+width = 4.0
+default_color = Color(0.2, 1, 0.5, 0.9)
+
+[node name="Ring2" type="Node2D" parent="."]
+
+[node name="Line" type="Line2D" parent="Ring2"]
+points = PackedVector2Array(0, -20, 20, 0, 0, 20, -20, 0, 0, -20)
+width = 3.0
+default_color = Color(0.6, 1, 0.8, 1)
+
+[node name="Core" type="Polygon2D" parent="."]
+color = Color(1, 1, 1, 0.9)
+polygon = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+amount = 16
+lifetime = 0.8
+emission_shape = 1
+emission_sphere_radius = 24.0
+spread = 180.0
+gravity = Vector2(0, 0)
+orbit_velocity_min = 1.0
+orbit_velocity_max = 2.0
+scale_amount_min = 2.0
+scale_amount_max = 4.0
+color = Color(0.2, 1, 0.6, 0.8)

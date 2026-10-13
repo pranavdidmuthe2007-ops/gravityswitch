@@ -1,0 +1,46 @@
+[gd_scene load_steps=3 format=3 uid="uid://b5k8n1q9m4d20"]
+
+[ext_resource type="Script" path="res://scripts/laser_beam.gd" id="1_lb"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_beam"]
+size = Vector2(12, 240)
+
+[node name="LaserBeam" type="Area2D" groups=["hazards"]]
+collision_layer = 4
+collision_mask = 2
+script = ExtResource("1_lb")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_beam")
+
+[node name="EmitterTop" type="Polygon2D" parent="."]
+position = Vector2(0, -120)
+color = Color(0.2, 0.25, 0.4, 1)
+polygon = PackedVector2Array(-14, -8, 14, -8, 10, 8, -10, 8)
+
+[node name="EmitterTopGlow" type="Polygon2D" parent="EmitterTop"]
+color = Color(1, 0, 0.4, 1)
+polygon = PackedVector2Array(-6, 4, 6, 4, 4, 8, -4, 8)
+
+[node name="EmitterBottom" type="Polygon2D" parent="."]
+position = Vector2(0, 120)
+color = Color(0.2, 0.25, 0.4, 1)
+polygon = PackedVector2Array(-10, -8, 10, -8, 14, 8, -14, 8)
+
+[node name="EmitterBottomGlow" type="Polygon2D" parent="EmitterBottom"]
+color = Color(1, 0, 0.4, 1)
+polygon = PackedVector2Array(-4, -8, 4, -8, 6, -4, -6, -4)
+
+[node name="BeamVisual" type="Node2D" parent="."]
+
+[node name="Glow" type="Polygon2D" parent="BeamVisual"]
+color = Color(1, 0, 0.35, 0.35)
+polygon = PackedVector2Array(-16, -118, 16, -118, 16, 118, -16, 118)
+
+[node name="Beam" type="Polygon2D" parent="BeamVisual"]
+color = Color(1, 0.1, 0.45, 0.9)
+polygon = PackedVector2Array(-6, -118, 6, -118, 6, 118, -6, 118)
+
+[node name="Core" type="Polygon2D" parent="BeamVisual"]
+color = Color(1, 0.9, 0.95, 1)
+polygon = PackedVector2Array(-2, -118, 2, -118, 2, 118, -2, 118)

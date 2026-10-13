@@ -1,0 +1,91 @@
+[gd_scene load_steps=9 format=3 uid="uid://c5q8v7x2k1m4n"]
+
+[ext_resource type="Script" path="res://scripts/level_base.gd" id="1_lb"]
+[ext_resource type="PackedScene" path="res://scenes/gameplay/player.tscn" id="2_pl"]
+[ext_resource type="PackedScene" path="res://scenes/gameplay/exit_portal.tscn" id="3_ep"]
+[ext_resource type="PackedScene" path="res://scenes/ui/hud.tscn" id="4_hud"]
+[ext_resource type="PackedScene" path="res://scenes/ui/pause_menu.tscn" id="5_pm"]
+[ext_resource type="PackedScene" path="res://scenes/ui/game_over.tscn" id="6_go"]
+[ext_resource type="PackedScene" path="res://scenes/ui/level_complete.tscn" id="7_lc"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_boundary"]
+size = Vector2(8000, 80)
+
+[node name="LevelBase" type="Node2D"]
+script = ExtResource("1_lb")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(360, 640)
+position_smoothing_enabled = true
+position_smoothing_speed = 12.0
+
+[node name="Background" type="CanvasLayer" parent="."]
+layer = -10
+
+[node name="BgColor" type="ColorRect" parent="Background"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.03, 0.04, 0.08, 1)
+
+[node name="Ceiling" type="StaticBody2D" parent="." groups=["solids"]]
+position = Vector2(3000, 200)
+collision_layer = 1
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ceiling"]
+shape = SubResource("RectangleShape2D_boundary")
+
+[node name="CeilingVisual" type="ColorRect" parent="Ceiling"]
+offset_left = -4000.0
+offset_top = -40.0
+offset_right = 4000.0
+offset_bottom = 40.0
+color = Color(0.05, 0.07, 0.14, 1)
+
+[node name="NeonBorder" type="Line2D" parent="Ceiling"]
+points = PackedVector2Array(-4000, 40, 4000, 40)
+width = 3.0
+default_color = Color(0, 0.85, 1, 0.9)
+
+[node name="Floor" type="StaticBody2D" parent="." groups=["solids"]]
+position = Vector2(3000, 1100)
+collision_layer = 1
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Floor"]
+shape = SubResource("RectangleShape2D_boundary")
+
+[node name="FloorVisual" type="ColorRect" parent="Floor"]
+offset_left = -4000.0
+offset_top = -40.0
+offset_right = 4000.0
+offset_bottom = 40.0
+color = Color(0.05, 0.07, 0.14, 1)
+
+[node name="NeonBorder" type="Line2D" parent="Floor"]
+points = PackedVector2Array(-4000, -40, 4000, -40)
+width = 3.0
+default_color = Color(0, 0.85, 1, 0.9)
+
+[node name="Platforms" type="Node2D" parent="."]
+
+[node name="Hazards" type="Node2D" parent="."]
+
+[node name="Collectibles" type="Node2D" parent="."]
+
+[node name="Player" parent="." instance=ExtResource("2_pl")]
+position = Vector2(120, 1040)
+
+[node name="ExitPortal" parent="." instance=ExtResource("3_ep")]
+position = Vector2(3400, 650)
+
+[node name="HUD" parent="." instance=ExtResource("4_hud")]
+
+[node name="PauseMenu" parent="." instance=ExtResource("5_pm")]
+
+[node name="GameOver" parent="." instance=ExtResource("6_go")]
+
+[node name="LevelComplete" parent="." instance=ExtResource("7_lc")]

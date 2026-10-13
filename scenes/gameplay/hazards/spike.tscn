@@ -1,0 +1,29 @@
+[gd_scene load_steps=2 format=3 uid="uid://c8nqm3d5e4b21"]
+
+[ext_resource type="Script" path="res://scripts/hazard.gd" id="1_spike"]
+
+[node name="Spike" type="Area2D" groups=["hazards"]]
+collision_layer = 4
+collision_mask = 2
+script = ExtResource("1_spike")
+hazard_name = "Spike"
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(-14, 16, 0, -14, 14, 16)
+
+[node name="OuterGlow" type="Polygon2D" parent="."]
+color = Color(1, 0.1, 0.3, 0.25)
+polygon = PackedVector2Array(-18, 18, 0, -18, 18, 18)
+
+[node name="Body" type="Polygon2D" parent="."]
+color = Color(0.95, 0.15, 0.25, 0.9)
+polygon = PackedVector2Array(-14, 16, 0, -14, 14, 16)
+
+[node name="Outline" type="Line2D" parent="."]
+points = PackedVector2Array(-14, 16, 0, -14, 14, 16, -14, 16)
+width = 2.5
+default_color = Color(1, 0.4, 0.5, 1)
+
+[node name="InnerSpike" type="Polygon2D" parent="."]
+color = Color(1, 0.7, 0.8, 1)
+polygon = PackedVector2Array(-5, 14, 0, -2, 5, 14)

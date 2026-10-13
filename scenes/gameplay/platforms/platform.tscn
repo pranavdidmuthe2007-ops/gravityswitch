@@ -1,0 +1,30 @@
+[gd_scene load_steps=2 format=3 uid="uid://c6f2e8j91m3k4"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_plat"]
+size = Vector2(200, 32)
+
+[node name="Platform" type="StaticBody2D" groups=["platforms"]]
+collision_layer = 1
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_plat")
+
+[node name="Background" type="Polygon2D" parent="."]
+color = Color(0.06, 0.08, 0.16, 1)
+polygon = PackedVector2Array(-100, -16, 100, -16, 100, 16, -100, 16)
+
+[node name="TopBorder" type="Line2D" parent="."]
+points = PackedVector2Array(-100, -16, 100, -16)
+width = 3.0
+default_color = Color(0, 0.9, 1, 0.9)
+
+[node name="BottomBorder" type="Line2D" parent="."]
+points = PackedVector2Array(-100, 16, 100, 16)
+width = 3.0
+default_color = Color(0, 0.9, 1, 0.9)
+
+[node name="InnerDetail" type="Line2D" parent="."]
+points = PackedVector2Array(-80, 0, 80, 0)
+width = 1.0
+default_color = Color(0, 0.9, 1, 0.2)

@@ -1,0 +1,156 @@
+[gd_scene load_steps=2 format=3 uid="uid://c7m5y1v9p2b4n"]
+
+[ext_resource type="Script" path="res://scripts/ui/settings_menu.gd" id="1_sm"]
+
+[node name="SettingsMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_sm")
+
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.04, 0.05, 0.1, 1)
+
+[node name="TopBar" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 110.0
+grow_horizontal = 2
+theme_override_constants/margin_left = 24
+theme_override_constants/margin_top = 32
+theme_override_constants/margin_right = 24
+
+[node name="HBox" type="HBoxContainer" parent="TopBar"]
+layout_mode = 2
+
+[node name="BackBtn" type="Button" parent="TopBar/HBox"]
+custom_minimum_size = Vector2(70, 60)
+layout_mode = 2
+focus_mode = 0
+theme_override_font_sizes/font_size = 28
+text = "◀"
+
+[node name="Spacer" type="Control" parent="TopBar/HBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="TitleLabel" type="Label" parent="TopBar/HBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 1, 1, 1)
+theme_override_font_sizes/font_size = 32
+text = "SETTINGS"
+
+[node name="SpacerR" type="Control" parent="TopBar/HBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Margin" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 130.0
+offset_bottom = -40.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 40
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 40
+theme_override_constants/margin_bottom = 20
+
+[node name="VBox" type="VBoxContainer" parent="Margin"]
+layout_mode = 2
+theme_override_constants/separation = 26
+
+[node name="MusicRow" type="VBoxContainer" parent="Margin/VBox"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="Label" type="Label" parent="Margin/VBox/MusicRow"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 22
+text = "MUSIC VOLUME"
+
+[node name="MusicSlider" type="HSlider" parent="Margin/VBox/MusicRow"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+value = 80.0
+
+[node name="SfxRow" type="VBoxContainer" parent="Margin/VBox"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="Label" type="Label" parent="Margin/VBox/SfxRow"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 22
+text = "SOUND EFFECTS"
+
+[node name="SfxSlider" type="HSlider" parent="Margin/VBox/SfxRow"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+value = 90.0
+
+[node name="HSeparator1" type="HSeparator" parent="Margin/VBox"]
+layout_mode = 2
+
+[node name="HapticsRow" type="HBoxContainer" parent="Margin/VBox"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Margin/VBox/HapticsRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 22
+text = "HAPTIC FEEDBACK"
+
+[node name="CheckButton" type="CheckButton" parent="Margin/VBox/HapticsRow"]
+layout_mode = 2
+focus_mode = 0
+button_pressed = true
+
+[node name="ParticlesRow" type="HBoxContainer" parent="Margin/VBox"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Margin/VBox/ParticlesRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 22
+text = "PARTICLE EFFECTS"
+
+[node name="CheckButton" type="CheckButton" parent="Margin/VBox/ParticlesRow"]
+layout_mode = 2
+focus_mode = 0
+button_pressed = true
+
+[node name="RestartRow" type="HBoxContainer" parent="Margin/VBox"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Margin/VBox/RestartRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 22
+text = "AUTO-RETRY ON DEATH"
+
+[node name="CheckButton" type="CheckButton" parent="Margin/VBox/RestartRow"]
+layout_mode = 2
+focus_mode = 0
+
+[node name="HSeparator2" type="HSeparator" parent="Margin/VBox"]
+layout_mode = 2
+
+[node name="ResetBtn" type="Button" parent="Margin/VBox"]
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 2
+focus_mode = 0
+theme_override_colors/font_color = Color(1, 0.4, 0.4, 1)
+theme_override_font_sizes/font_size = 22
+text = "RESET PROGRESS"

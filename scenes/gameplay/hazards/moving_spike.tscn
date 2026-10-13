@@ -1,0 +1,31 @@
+[gd_scene load_steps=2 format=3 uid="uid://d3m7yq052b9t1"]
+
+[ext_resource type="Script" path="res://scripts/moving_hazard.gd" id="1_mh"]
+
+[node name="MovingSpike" type="Area2D" groups=["hazards"]]
+collision_layer = 4
+collision_mask = 2
+script = ExtResource("1_mh")
+move_distance = Vector2(0, 140)
+cycle_time = 2.2
+hazard_name = "Moving Spike"
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(-14, 16, 0, -14, 14, 16)
+
+[node name="OuterGlow" type="Polygon2D" parent="."]
+color = Color(1, 0.4, 0.1, 0.3)
+polygon = PackedVector2Array(-18, 18, 0, -18, 18, 18)
+
+[node name="Body" type="Polygon2D" parent="."]
+color = Color(1, 0.35, 0.1, 0.95)
+polygon = PackedVector2Array(-14, 16, 0, -14, 14, 16)
+
+[node name="Outline" type="Line2D" parent="."]
+points = PackedVector2Array(-14, 16, 0, -14, 14, 16, -14, 16)
+width = 2.5
+default_color = Color(1, 0.7, 0.2, 1)
+
+[node name="Core" type="Polygon2D" parent="."]
+color = Color(1, 0.95, 0.7, 1)
+polygon = PackedVector2Array(-4, 12, 0, 0, 4, 12)

@@ -1,0 +1,51 @@
+[gd_scene load_steps=4 format=3 uid="uid://c7m9kq041b6t2"]
+
+[ext_resource type="Script" path="res://scripts/rotating_hazard.gd" id="1_rh"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bar1"]
+size = Vector2(140, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bar2"]
+size = Vector2(16, 140)
+
+[node name="RotatingHazard" type="Area2D" groups=["hazards"]]
+collision_layer = 4
+collision_mask = 2
+script = ExtResource("1_rh")
+rotation_speed = 2.5
+
+[node name="CollisionShapeBar1" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_bar1")
+
+[node name="CollisionShapeBar2" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_bar2")
+
+[node name="Visual" type="Node2D" parent="."]
+
+[node name="GlowH" type="Polygon2D" parent="Visual"]
+color = Color(1, 0, 0.4, 0.3)
+polygon = PackedVector2Array(-74, -12, 74, -12, 74, 12, -74, 12)
+
+[node name="GlowV" type="Polygon2D" parent="Visual"]
+color = Color(1, 0, 0.4, 0.3)
+polygon = PackedVector2Array(-12, -74, 12, -74, 12, 74, -12, 74)
+
+[node name="BarH" type="Polygon2D" parent="Visual"]
+color = Color(0.9, 0.1, 0.3, 0.95)
+polygon = PackedVector2Array(-70, -8, 70, -8, 70, 8, -70, 8)
+
+[node name="BarV" type="Polygon2D" parent="Visual"]
+color = Color(0.9, 0.1, 0.3, 0.95)
+polygon = PackedVector2Array(-8, -70, 8, -70, 8, 70, -8, 70)
+
+[node name="CoreH" type="Polygon2D" parent="Visual"]
+color = Color(1, 0.8, 0.9, 1)
+polygon = PackedVector2Array(-66, -2, 66, -2, 66, 2, -66, 2)
+
+[node name="CoreV" type="Polygon2D" parent="Visual"]
+color = Color(1, 0.8, 0.9, 1)
+polygon = PackedVector2Array(-2, -66, 2, -66, 2, 66, -2, 66)
+
+[node name="CenterHub" type="Polygon2D" parent="Visual"]
+color = Color(1, 1, 1, 1)
+polygon = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)

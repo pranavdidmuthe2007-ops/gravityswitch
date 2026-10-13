@@ -1,0 +1,10 @@
+# Godot 4+ cache and imported assets
+.godot/
+
+# Exported binaries (uncomment if you don't want to track exports)
+# build/
+
+# OS and editor files
+.DS_Store
+Thumbs.db
+*.tmp

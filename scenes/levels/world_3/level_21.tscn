@@ -1,0 +1,56 @@
+[gd_scene load_steps=9 format=3]
+
+[ext_resource type="PackedScene" path="res://scenes/levels/level_base.tscn" id="1_base"]
+[ext_resource type="PackedScene" path="res://scenes/gameplay/platforms/collapsing_platform.tscn" id="2_collapsing_platform"]
+[ext_resource type="PackedScene" path="res://scenes/gameplay/hazards/laser_beam.tscn" id="3_laser"]
+[ext_resource type="PackedScene" path="res://scenes/gameplay/hazards/moving_spike.tscn" id="4_moving_spike"]
+[ext_resource type="PackedScene" path="res://scenes/gameplay/collectibles/energy_orb.tscn" id="5_orb"]
+[ext_resource type="PackedScene" path="res://scenes/gameplay/platforms/platform.tscn" id="6_platform"]
+[ext_resource type="PackedScene" path="res://scenes/gameplay/hazards/rotating_hazard.tscn" id="7_rotating"]
+[ext_resource type="PackedScene" path="res://scenes/gameplay/hazards/spike.tscn" id="8_spike"]
+
+[node name="Level21" instance=ExtResource("1_base")]
+level_number = 21
+orb_target = 3
+switch_budget_for_star = 11
+level_length = 3960.0
+
+[node name="Plat_0" parent="Platforms" index="0" instance=ExtResource("6_platform")]
+position = Vector2(1515.0, 520.0)
+
+[node name="Plat_1" parent="Platforms" index="1" instance=ExtResource("2_collapsing_platform")]
+position = Vector2(2445.0, 780.0)
+
+[node name="Plat_2" parent="Platforms" index="2" instance=ExtResource("6_platform")]
+position = Vector2(3375.0, 520.0)
+
+[node name="Haz_0" parent="Hazards" index="0" instance=ExtResource("7_rotating")]
+position = Vector2(900.0, 650.0)
+
+[node name="Haz_1" parent="Hazards" index="1" instance=ExtResource("3_laser")]
+position = Vector2(1365.0, 650.0)
+
+[node name="Haz_2" parent="Hazards" index="2" instance=ExtResource("4_moving_spike")]
+position = Vector2(1830.0, 500.0)
+
+[node name="Haz_3" parent="Hazards" index="3" instance=ExtResource("8_spike")]
+position = Vector2(2295.0, 1044.0)
+
+[node name="Haz_4" parent="Hazards" index="4" instance=ExtResource("8_spike")]
+position = Vector2(2445.0, 256.0)
+rotation = 3.14159
+
+[node name="Haz_5" parent="Hazards" index="5" instance=ExtResource("7_rotating")]
+position = Vector2(2760.0, 650.0)
+
+[node name="Haz_6" parent="Hazards" index="6" instance=ExtResource("3_laser")]
+position = Vector2(3225.0, 650.0)
+
+[node name="Orb_0" parent="Collectibles" index="0" instance=ExtResource("5_orb")]
+position = Vector2(1029.6000000000001, 650.0)
+
+[node name="Orb_1" parent="Collectibles" index="1" instance=ExtResource("5_orb")]
+position = Vector2(2217.6000000000004, 380.0)
+
+[node name="Orb_2" parent="Collectibles" index="2" instance=ExtResource("5_orb")]
+position = Vector2(3247.2, 920.0)

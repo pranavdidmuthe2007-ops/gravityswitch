@@ -1,0 +1,94 @@
+[gd_scene load_steps=2 format=3 uid="uid://e4x7b8p1n0m2k"]
+
+[ext_resource type="Script" path="res://scripts/ui/level_complete.gd" id="1_lc"]
+
+[node name="LevelComplete" type="CanvasLayer"]
+process_mode = 3
+layer = 15
+script = ExtResource("1_lc")
+
+[node name="DimOverlay" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.02, 0.05, 0.12, 0.85)
+
+[node name="Panel" type="PanelContainer" parent="."]
+custom_minimum_size = Vector2(480, 520)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -240.0
+offset_top = -260.0
+offset_right = 240.0
+offset_bottom = 260.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBox" type="VBoxContainer" parent="Panel"]
+layout_mode = 2
+theme_override_constants/separation = 16
+alignment = 1
+
+[node name="Title" type="Label" parent="Panel/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.2, 1, 0.6, 1)
+theme_override_colors/font_shadow_color = Color(0, 0.5, 0.2, 0.8)
+theme_override_font_sizes/font_size = 38
+text = "LEVEL COMPLETED!"
+horizontal_alignment = 1
+
+[node name="StarsContainer" type="HBoxContainer" parent="Panel/VBox"]
+layout_mode = 2
+theme_override_constants/separation = 24
+alignment = 1
+
+[node name="Star1" type="Label" parent="Panel/VBox/StarsContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.85, 0.1, 1)
+theme_override_font_sizes/font_size = 54
+text = "★"
+
+[node name="Star2" type="Label" parent="Panel/VBox/StarsContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.85, 0.1, 1)
+theme_override_font_sizes/font_size = 54
+text = "★"
+
+[node name="Star3" type="Label" parent="Panel/VBox/StarsContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.85, 0.1, 1)
+theme_override_font_sizes/font_size = 54
+text = "★"
+
+[node name="StatsLabel" type="Label" parent="Panel/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.8, 0.9, 1, 0.9)
+theme_override_font_sizes/font_size = 22
+text = "Orbs: 3 / 3  |  Flips: 4"
+horizontal_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="Panel/VBox"]
+layout_mode = 2
+
+[node name="NextBtn" type="Button" parent="Panel/VBox"]
+custom_minimum_size = Vector2(0, 68)
+layout_mode = 2
+theme_override_font_sizes/font_size = 28
+text = "NEXT LEVEL ▶"
+
+[node name="RetryBtn" type="Button" parent="Panel/VBox"]
+custom_minimum_size = Vector2(0, 56)
+layout_mode = 2
+theme_override_font_sizes/font_size = 22
+text = "↻  REPLAY"
+
+[node name="LevelsBtn" type="Button" parent="Panel/VBox"]
+custom_minimum_size = Vector2(0, 56)
+layout_mode = 2
+theme_override_font_sizes/font_size = 22
+text = "LEVEL SELECT"

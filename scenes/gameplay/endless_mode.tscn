@@ -1,0 +1,197 @@
+[gd_scene load_steps=5 format=3 uid="uid://dm09v8k2p4x1b"]
+
+[ext_resource type="Script" path="res://scripts/endless_mode.gd" id="1_em"]
+[ext_resource type="PackedScene" path="res://scenes/gameplay/player.tscn" id="2_pl"]
+[ext_resource type="PackedScene" path="res://scenes/ui/pause_menu.tscn" id="3_pm"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_endless_boundary"]
+size = Vector2(8000, 80)
+
+[node name="EndlessMode" type="Node2D"]
+script = ExtResource("1_em")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(360, 640)
+position_smoothing_enabled = true
+position_smoothing_speed = 12.0
+
+[node name="Background" type="CanvasLayer" parent="."]
+layer = -10
+
+[node name="BgColor" type="ColorRect" parent="Background"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.03, 0.04, 0.08, 1)
+
+[node name="Ceiling" type="StaticBody2D" parent="." groups=["solids"]]
+position = Vector2(0, 200)
+collision_layer = 1
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ceiling"]
+shape = SubResource("RectangleShape2D_endless_boundary")
+
+[node name="CeilingVisual" type="ColorRect" parent="Ceiling"]
+offset_left = -4000.0
+offset_top = -40.0
+offset_right = 4000.0
+offset_bottom = 40.0
+color = Color(0.05, 0.07, 0.14, 1)
+
+[node name="NeonBorder" type="Line2D" parent="Ceiling"]
+points = PackedVector2Array(-4000, 40, 4000, 40)
+width = 3.0
+default_color = Color(0, 0.85, 1, 0.9)
+
+[node name="Floor" type="StaticBody2D" parent="." groups=["solids"]]
+position = Vector2(0, 1100)
+collision_layer = 1
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Floor"]
+shape = SubResource("RectangleShape2D_endless_boundary")
+
+[node name="FloorVisual" type="ColorRect" parent="Floor"]
+offset_left = -4000.0
+offset_top = -40.0
+offset_right = 4000.0
+offset_bottom = 40.0
+color = Color(0.05, 0.07, 0.14, 1)
+
+[node name="NeonBorder" type="Line2D" parent="Floor"]
+points = PackedVector2Array(-4000, -40, 4000, -40)
+width = 3.0
+default_color = Color(0, 0.85, 1, 0.9)
+
+[node name="Platforms" type="Node2D" parent="."]
+
+[node name="Hazards" type="Node2D" parent="."]
+
+[node name="Collectibles" type="Node2D" parent="."]
+
+[node name="Player" parent="." instance=ExtResource("2_pl")]
+position = Vector2(120, 1040)
+
+[node name="PauseMenu" parent="." instance=ExtResource("3_pm")]
+
+[node name="HUD" type="CanvasLayer" parent="."]
+layer = 5
+
+[node name="TopBar" type="MarginContainer" parent="HUD"]
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 110.0
+grow_horizontal = 2
+theme_override_constants/margin_left = 24
+theme_override_constants/margin_top = 28
+theme_override_constants/margin_right = 24
+
+[node name="HBox" type="HBoxContainer" parent="HUD/TopBar"]
+layout_mode = 2
+alignment = 1
+
+[node name="PauseBtn" type="Button" parent="HUD/TopBar/HBox"]
+custom_minimum_size = Vector2(70, 60)
+layout_mode = 2
+focus_mode = 0
+theme_override_font_sizes/font_size = 28
+text = "⏸"
+
+[node name="Spacer" type="Control" parent="HUD/TopBar/HBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="DistanceLabel" type="Label" parent="HUD/TopBar/HBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0.4, 0.8, 0.8)
+theme_override_font_sizes/font_size = 36
+text = "0 m"
+horizontal_alignment = 1
+
+[node name="Spacer2" type="Control" parent="HUD/TopBar/HBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="BestLabel" type="Label" parent="HUD/TopBar/HBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.8, 0.2, 1)
+theme_override_font_sizes/font_size = 24
+text = "BEST: 0m"
+
+[node name="GameOverModal" type="CanvasLayer" parent="."]
+layer = 15
+visible = false
+
+[node name="Dim" type="ColorRect" parent="GameOverModal"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.04, 0.02, 0.06, 0.85)
+
+[node name="Panel" type="PanelContainer" parent="GameOverModal"]
+custom_minimum_size = Vector2(480, 480)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -240.0
+offset_top = -240.0
+offset_right = 240.0
+offset_bottom = 240.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBox" type="VBoxContainer" parent="GameOverModal/Panel"]
+layout_mode = 2
+theme_override_constants/separation = 16
+alignment = 1
+
+[node name="Title" type="Label" parent="GameOverModal/Panel/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.2, 0.4, 1)
+theme_override_font_sizes/font_size = 40
+text = "RUN TERMINATED"
+horizontal_alignment = 1
+
+[node name="NewBestBanner" type="Label" parent="GameOverModal/Panel/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.85, 0.1, 1)
+theme_override_font_sizes/font_size = 24
+text = "★ NEW BEST DISTANCE! ★"
+horizontal_alignment = 1
+
+[node name="DistanceLabel" type="Label" parent="GameOverModal/Panel/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 1, 1, 1)
+theme_override_font_sizes/font_size = 32
+text = "Distance: 0 m"
+horizontal_alignment = 1
+
+[node name="BestLabel" type="Label" parent="GameOverModal/Panel/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.8, 0.85, 0.9, 0.8)
+theme_override_font_sizes/font_size = 22
+text = "Best Record: 0 m"
+horizontal_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="GameOverModal/Panel/VBox"]
+layout_mode = 2
+
+[node name="RetryBtn" type="Button" parent="GameOverModal/Panel/VBox"]
+custom_minimum_size = Vector2(0, 68)
+layout_mode = 2
+theme_override_font_sizes/font_size = 28
+text = "↻  RUN AGAIN"
+
+[node name="MenuBtn" type="Button" parent="GameOverModal/Panel/VBox"]
+custom_minimum_size = Vector2(0, 56)
+layout_mode = 2
+theme_override_font_sizes/font_size = 22
+text = "MAIN MENU"

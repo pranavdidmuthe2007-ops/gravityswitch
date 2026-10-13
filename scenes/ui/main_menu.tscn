@@ -1,0 +1,175 @@
+[gd_scene load_steps=2 format=3 uid="uid://b0q9k3v6x2p8n"]
+
+[ext_resource type="Script" path="res://scripts/ui/main_menu.gd" id="1_mm"]
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_mm")
+
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.04, 0.05, 0.1, 1)
+
+[node name="TopBar" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 120.0
+grow_horizontal = 2
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_top = 40
+theme_override_constants/margin_right = 32
+
+[node name="HBox" type="HBoxContainer" parent="TopBar"]
+layout_mode = 2
+
+[node name="Spacer" type="Control" parent="TopBar/HBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="SettingsBtn" type="Button" parent="TopBar/HBox"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+focus_mode = 0
+theme_override_font_sizes/font_size = 30
+text = "⚙"
+
+[node name="TitleBox" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 130.0
+offset_bottom = 240.0
+grow_horizontal = 2
+theme_override_constants/separation = 6
+alignment = 1
+
+[node name="TitleLabel" type="Label" parent="TitleBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0.4, 0.8, 0.8)
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/shadow_offset_y = 6
+theme_override_font_sizes/font_size = 54
+text = "GRAVITY SWITCH"
+horizontal_alignment = 1
+
+[node name="SubLabel" type="Label" parent="TitleBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.85, 0.5, 1, 0.9)
+theme_override_font_sizes/font_size = 20
+text = "NEON PHYSICS PLATFORMER"
+horizontal_alignment = 1
+
+[node name="CenterDemo" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_top = -80.0
+offset_bottom = -80.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CeilingLine" type="Line2D" parent="CenterDemo"]
+points = PackedVector2Array(-240, -120, 240, -120)
+width = 3.0
+default_color = Color(0, 0.85, 1, 0.7)
+
+[node name="FloorLine" type="Line2D" parent="CenterDemo"]
+points = PackedVector2Array(-240, 120, 240, 120)
+width = 3.0
+default_color = Color(0, 0.85, 1, 0.7)
+
+[node name="Trail" type="Line2D" parent="CenterDemo"]
+width = 12.0
+default_color = Color(0, 1, 1, 0.4)
+
+[node name="Character" type="Node2D" parent="CenterDemo"]
+position = Vector2(0, 90)
+
+[node name="OuterGlow" type="Polygon2D" parent="CenterDemo/Character"]
+color = Color(0, 0.9, 1, 0.25)
+polygon = PackedVector2Array(-22, -22, 22, -22, 22, 22, -22, 22)
+
+[node name="Body" type="Polygon2D" parent="CenterDemo/Character"]
+color = Color(0.06, 0.12, 0.24, 1)
+polygon = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
+
+[node name="Border" type="Line2D" parent="CenterDemo/Character"]
+points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16, -16, -16)
+width = 2.5
+default_color = Color(0, 1, 1, 1)
+
+[node name="Core" type="Polygon2D" parent="CenterDemo/Character"]
+color = Color(0, 1, 1, 1)
+polygon = PackedVector2Array(-6, -6, 6, -6, 6, 6, -6, 6)
+
+[node name="VBoxBottom" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -230.0
+offset_top = -370.0
+offset_right = 230.0
+offset_bottom = -50.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/separation = 14
+alignment = 1
+
+[node name="PlayBtn" type="Button" parent="VBoxBottom"]
+custom_minimum_size = Vector2(0, 72)
+layout_mode = 2
+focus_mode = 0
+theme_override_font_sizes/font_size = 32
+text = "PLAY ▶"
+
+[node name="LevelsBtn" type="Button" parent="VBoxBottom"]
+custom_minimum_size = Vector2(0, 58)
+layout_mode = 2
+focus_mode = 0
+theme_override_font_sizes/font_size = 24
+text = "LEVELS (30)"
+
+[node name="EndlessBtn" type="Button" parent="VBoxBottom"]
+custom_minimum_size = Vector2(0, 58)
+layout_mode = 2
+focus_mode = 0
+theme_override_font_sizes/font_size = 24
+text = "⚡ ENDLESS MODE"
+
+[node name="HBoxExtras" type="HBoxContainer" parent="VBoxBottom"]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="SkinsBtn" type="Button" parent="VBoxBottom/HBoxExtras"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+size_flags_horizontal = 3
+focus_mode = 0
+theme_override_font_sizes/font_size = 20
+text = "🎨 SKINS"
+
+[node name="AchievementsBtn" type="Button" parent="VBoxBottom/HBoxExtras"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+size_flags_horizontal = 3
+focus_mode = 0
+theme_override_font_sizes/font_size = 20
+text = "🏆 AWARDS"

@@ -1,0 +1,95 @@
+[gd_scene load_steps=5 format=3 uid="uid://bvyg7k4y8gqf1"]
+
+[ext_resource type="Script" path="res://scripts/player_controller.gd" id="1_pc"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_body"]
+size = Vector2(28, 28)
+
+[sub_resource type="Curve" id="Curve_trail"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_trail"]
+colors = PackedColorArray(0, 1, 1, 0, 0, 1, 1, 0.8)
+
+[node name="Player" type="CharacterBody2D" groups=["player"]]
+collision_layer = 2
+collision_mask = 1
+script = ExtResource("1_pc")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_body")
+
+[node name="Trail" type="Line2D" parent="."]
+width = 16.0
+width_curve = SubResource("Curve_trail")
+default_color = Color(0, 0.85, 1, 0.6)
+gradient = SubResource("Gradient_trail")
+begin_cap_mode = 2
+end_cap_mode = 2
+
+[node name="SpriteContainer" type="Node2D" parent="."]
+
+[node name="OuterGlow" type="Polygon2D" parent="SpriteContainer"]
+color = Color(0, 0.9, 1, 0.25)
+polygon = PackedVector2Array(-20, -20, 20, -20, 20, 20, -20, 20)
+
+[node name="Body" type="Polygon2D" parent="SpriteContainer"]
+color = Color(0.05, 0.1, 0.22, 1)
+polygon = PackedVector2Array(-14, -14, 14, -14, 14, 14, -14, 14)
+
+[node name="Border" type="Line2D" parent="SpriteContainer"]
+points = PackedVector2Array(-14, -14, 14, -14, 14, 14, -14, 14, -14, -14)
+width = 3.0
+default_color = Color(0, 1, 1, 1)
+
+[node name="InnerCore" type="Polygon2D" parent="SpriteContainer"]
+color = Color(0, 1, 1, 1)
+polygon = PackedVector2Array(-6, -6, 6, -6, 6, 6, -6, 6)
+
+[node name="Eye" type="Polygon2D" parent="SpriteContainer"]
+color = Color(1, 1, 1, 1)
+polygon = PackedVector2Array(4, -4, 10, -4, 10, 4, 4, 4)
+
+[node name="GravityIndicator" type="Polygon2D" parent="."]
+position = Vector2(0, 0)
+color = Color(0, 0.9, 1, 1)
+polygon = PackedVector2Array(0, 24, -6, 17, 6, 17)
+
+[node name="SwitchParticles" type="CPUParticles2D" parent="."]
+emitting = false
+amount = 18
+lifetime = 0.35
+one_shot = true
+explosiveness = 0.9
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 120.0
+initial_velocity_max = 240.0
+scale_amount_min = 3.0
+scale_amount_max = 6.0
+color = Color(0, 1, 1, 0.9)
+
+[node name="DeathParticles" type="CPUParticles2D" parent="."]
+emitting = false
+amount = 36
+lifetime = 0.6
+one_shot = true
+explosiveness = 1.0
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 160.0
+initial_velocity_max = 380.0
+scale_amount_min = 4.0
+scale_amount_max = 8.0
+color = Color(1, 0.2, 0.4, 1)
+
+[node name="HazardDetector" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HazardDetector"]
+shape = SubResource("RectangleShape2D_body")
+
+[connection signal="area_entered" from="HazardDetector" to="." method="_on_hazard_detector_area_entered"]
+[connection signal="body_entered" from="HazardDetector" to="." method="_on_hazard_detector_body_entered"]

@@ -1,0 +1,30 @@
+[gd_scene load_steps=4 format=3]
+
+[ext_resource type="PackedScene" path="res://scenes/levels/level_base.tscn" id="1_base"]
+[ext_resource type="PackedScene" path="res://scenes/gameplay/collectibles/energy_orb.tscn" id="2_orb"]
+[ext_resource type="PackedScene" path="res://scenes/gameplay/hazards/spike.tscn" id="3_spike"]
+
+[node name="Level1" instance=ExtResource("1_base")]
+level_number = 1
+orb_target = 3
+switch_budget_for_star = 4
+level_length = 2580.0
+
+[node name="Haz_0" parent="Hazards" index="0" instance=ExtResource("3_spike")]
+position = Vector2(900.0, 1044.0)
+
+[node name="Haz_1" parent="Hazards" index="1" instance=ExtResource("3_spike")]
+position = Vector2(1475.0, 256.0)
+rotation = 3.14159
+
+[node name="Haz_2" parent="Hazards" index="2" instance=ExtResource("3_spike")]
+position = Vector2(2050.0, 1044.0)
+
+[node name="Orb_0" parent="Collectibles" index="0" instance=ExtResource("2_orb")]
+position = Vector2(645.0, 650.0)
+
+[node name="Orb_1" parent="Collectibles" index="1" instance=ExtResource("2_orb")]
+position = Vector2(1419.0000000000002, 920.0)
+
+[node name="Orb_2" parent="Collectibles" index="2" instance=ExtResource("2_orb")]
+position = Vector2(2115.6, 380.0)
